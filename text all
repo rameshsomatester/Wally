@@ -317,3 +317,23 @@ public class CustomBottomSheetDialogFragment extends BottomSheetDialogFragment{
 gradle
 
   compile 'com.android.support:design:24.1.1'
+  
+  
+  
+  
+  
+  
+  
+  
+  share functionality works with 
+  
+  Bitmap b = BitmapFactory.decodeResource(getResources(),Images[getImageView()]);
+                        Intent share = new Intent(Intent.ACTION_SEND);
+                        share.setType("image/jpeg");
+                        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                        b.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
+                        String path = MediaStore.Images.Media.insertImage(getActivity().getContentResolver(),
+                                b, CustomPagerAdapter.Name[getImageView()], null);
+                        Uri imageUri =  Uri.parse(path);
+                        share.putExtra(Intent.EXTRA_STREAM, imageUri);
+                        startActivity(Intent.createChooser(share, "Select"));
